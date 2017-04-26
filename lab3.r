@@ -34,3 +34,18 @@ print(my_ifelse(v, ">", 31))
 ##[1] 137 131  35 411
 
 #4.	Функція columnmean(x, removeNA), яка розраховує середнє значення (mean) по кожному стовпцю матриці, або data frame. Логічний параметр removeNA вказує, чи видаляти NA значення. По замовчуванню він дорівнює TRUE.
+columnmean<- function(x, removeNA=TRUE){
+  res<-c()
+  for (el in 1:ncol(x)){
+    res<-c(res, mean(x[ ,el], na.rm=removeNA))
+  }
+  return(res)
+}
+
+y <- data.frame(a = rnorm(100), b = 1:1000, cc = rnorm(1000))
+m <- matrix(data=c(0.5,3.9,0,2,1.3,NA,2.2,7,NA,2.8,4.6,5.1),ncol=3)
+
+columnmean(y, FALSE)
+## [1] -0.10828109 500.50000000   0.01095201
+columnmean(m, TRUE)
+## [1] 0.5 3.9 0.0
