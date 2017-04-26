@@ -19,11 +19,11 @@ d[1:6,]
 ## 6    28      NA 14.9   66     5   6
 
 #3.	Скільки спостерігань (строк) в дата фреймі?
-nrow(x)
+nrow(d)
 ## [1] 153
 
 #4.	Виведіть останні 10 строк дата фрейму.
-tail(x,10)
+tail(d,10)
 ##    Ozone Solar.R Wind Temp Month Day
 ## 144    13     238 12.6   64     9  21
 ## 145    23      14  9.2   71     9  22
@@ -37,15 +37,15 @@ tail(x,10)
 ## 153    20     223 11.5   68     9  30
 
 #5.	Як багато значень «NA» в стовпці «Ozone»?
-sum(is.na(x$Ozone))
+sum(is.na(d$Ozone))
 ##[1] 37
 
 #6.	Яке середнє (mean) стовпця «Ozone». Виключити «NA» значення.
-mean(x$Ozone, trim=0, na.rm = TRUE)
+mean(d$Ozone, trim=0, na.rm = TRUE)
 ##[1] 42.12931
 
 #7.	Виведіть частину набору даних (subset) зі значенням «Ozone» > 31 та «Temp» > 90. Яке середнє (mean) значень «Solar.R» в цьому наборі даних (subset)?
-subset(subset(x,Ozone>31), Temp>90)
+subset(subset(d,Ozone>31), Temp>90)
 ##    Ozone Solar.R Wind Temp Month Day
 ## 69     97     267  6.3   92     7   8
 ## 70     97     272  5.7   92     7   9
@@ -58,16 +58,16 @@ subset(subset(x,Ozone>31), Temp>90)
 ## 126    73     183  2.8   93     9   3
 ## 127    91     189  4.6   93     9   4
 
-subs<-subset(subset(x,Ozone>31), Temp>90)
+subs<-subset(subset(d,Ozone>31), Temp>90)
 mean(subs$Solar.R,trim=0, na.rm = TRUE)
 ## [1] 212.8
 
 #8.	Яке середнє значення (mean) для «Temp» для червня («Month» дорівнює 6)?
-subb<-subset(x, Month==6)
+subb<-subset(d, Month==6)
 mean(subb$Temp, trim=0, na.rm = TRUE)
 ## [1] 79.1
 
 #9.	Яке максимальне значення «Ozone» для травня («Month» дорівнює 5)?
-subbb<-subset(x, Month==5)
+subbb<-subset(d, Month==5)
 max(subbb$Ozone,na.rm = TRUE)
 ## [1] 115
