@@ -1,5 +1,5 @@
-pmean <- function(directory, pollutant, id = 1:332) {
-    filePath = paste('/home/morhun/DataScienceCourseKNU', directory, sep = "/")
+pmean <- function(pollutant, id = 1:332) {
+    filePath = paste('/home/morhun/DataScienceCourseKNU', sep = "/")
     pollutionData = c()
     for (i in id) {
         filenameWithoutExtencion = paste(filePath, sprintf("%03d", i), sep = '/')
@@ -11,8 +11,8 @@ pmean <- function(directory, pollutant, id = 1:332) {
     return(mean(pollutionData, na.rm = TRUE))
 }
 
-complete <- function(directory, id = 1:332) {
-    csvfiles <- sprintf("/home/morhun/DataScienceCourseKNU/%03d.csv", directory, id)
+complete <- function(id = 1:332) {
+    csvfiles <- sprintf("/home/morhun/DataScienceCourseKNU/%s/%03d.csv", id)
     res = c()
     for (csv in csvfiles) {
         file = read.csv(csv)
@@ -24,12 +24,11 @@ complete <- function(directory, id = 1:332) {
     ))
 }
 
-corr <- function(directory, threshold = 0) {
-  completedData <- complete(directory)
+corr <- function(threshold = 0) {
   ids <- subset(completedData, completedData$nobs > threshold)$id
   
   correlationVector <- sapply(ids, function(single_id) {
-    path <- sprintf("/home/morhun/DataScienceCourseKNU/%03d.csv", directory, single_id)
+    path <- sprintf("/home/asarana/DataScienceCourseKNU/%s/%03d.csv", single_id)
     completedData <- read.csv(path)
     
     completedData <- subset(completedData, complete.cases(completedData))
