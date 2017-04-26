@@ -28,7 +28,7 @@ corr <- function(threshold = 0) {
   ids <- subset(completedData, completedData$nobs > threshold)$id
   
   correlationVector <- sapply(ids, function(single_id) {
-    path <- sprintf("/home/asarana/DataScienceCourseKNU/%s/%03d.csv", single_id)
+    path <- sprintf("/home/morhun/DataScienceCourseKNU/%s/%03d.csv", single_id)
     completedData <- read.csv(path)
     
     completedData <- subset(completedData, complete.cases(completedData))
